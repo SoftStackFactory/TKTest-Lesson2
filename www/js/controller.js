@@ -20,15 +20,15 @@ function($scope, $state, UserService, $ionicHistory) {
                     $state.go('lobby');
                 } else {
                     // invalid response
-                    alert("The connection with the server was unsuccessful, check your internet connection and try again later.");
+                    alert("Something went wrong, try again.");
                 }
             }, function(response) {
-                // something went wrong
-                console.log(response);
+                // Code 401 corresponds to Unauthorized access, in this case, the email/password combination was incorrect.
                 if(response.status === 401)
                 {
                     alert("Incorrect username or password");
                 }else if(response.data === null) {
+                //If the data is null, it means there is no internet connection.
                     alert("The connection with the server was unsuccessful, check your internet connection and try again later.");
                 }else {
                     alert("Something went wrong, try again.");
@@ -69,11 +69,12 @@ function($scope, $state, UserService, $ionicHistory) {
                 }, function(response) {
                     
                     console.log(response);
-                    // status 422 corresonds to an email been registered to the DB
+                    // status 422 in this case corresonds to the email already registered to the DB
                     if(response.status === 422)
                     {
                         alert("The email is already taken.");
                     }else if(response.data === null){
+                         //If the data is null, it means there is no internet connection.
                         alert("The connection with the server was unsuccessful, check your internet connection and try again later.");
                     }else {
                         alert("Something went wrong, try again.");
