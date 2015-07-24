@@ -64,7 +64,7 @@ function($scope, $state, UserService, $ionicHistory) {
                     } else {
                         // invalid response
                         console.log(response);
-                        alert("The connection with the server was unsuccessful, check your internet connection and try again later.");
+                        alert("Something went wrong, try again.");
                     }
                 }, function(response) {
                     
